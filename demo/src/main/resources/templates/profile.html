@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<<<<<<< HEAD
+    <title>User Profile</title>
+    <link rel="stylesheet" th:href="@{/profile.css}">
+</head>
+
+<body>
+
+<div class="container">
+    <h2>User Profile</h2>
+
+    <div class="user-details">
+        <h3>User Information</h3>
+        <div class="info-item">User ID: <span th:text="${user.userId}"></span></div>
+        <div class="info-item">Name: <span th:text="${user.name}"></span></div>
+        <div class="info-item">Email: <span th:text="${user.email}"></span></div>
+        <div class="info-item">Phone Number: <span th:text="${user.phoneNumber}"></span></div>
+        <div class="info-item">Address: <span th:text="${user.address}"></span></div>
+
+    </div>
+
+    <h3>Bookings</h3>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Booking ID</th>
+                <th>View</th>
+                <th>Booking Date</th>
+                <th>Status</th>
+                <th>Discount</th>
+                <th>Discount Availed?</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="booking : ${user.bookings}">
+                <td th:text="${booking.bookingId}"></td>
+                <td>
+                    <a th:href="@{/flights/{flightId}(flightId=${booking.flightId})}" th:text="'Flight Details'">Flight Details</a>
+                </td>
+                <td th:text="${booking.bookingDate}"></td>
+                <td th:text="${booking.status}"></td>
+                <td th:text="${booking.totalPrice}"></td>
+                <td th:text="${booking.discountApplied}"></td>
+
+            </tr>
+        </tbody>
+    </table>
+
+    <br></br>
+    <h2><a href="/bookFlight" class="btn btn-primary">Book Flight</a></h2>
+
+</div>
+
+<script>
+    // Retrieve the user_id from localStorage
+    const userId = localStorage.getItem('userId');
+    console.log(userId);
+</script>
+=======
+    <meta charset="UTF-8">
+    <title>User Profile</title>
+    <link rel="stylesheet" th:href="@{/profile.css}">
+
+</head>
+<body>
+
+    <h2>User Profile</h2>
+
+    <div>
+        <p><strong>User ID:</strong> <span th:text="${user.userId}"></span></p>
+        <p><strong>Name:</strong> <span th:text="${user.name}"></span></p>
+        <p><strong>Email:</strong> <span th:text="${user.email}"></span></p>
+        <p><strong>Phone Number:</strong> <span th:text="${user.phoneNumber}"></span></p>
+        <p><strong>Address:</strong> <span th:text="${user.address}"></span></p>
+    </div>
+
+    <div>
+        <h3>Bookings</h3>
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Booking ID</th>
+                    <th>View</th>
+                    <th>Booking Date</th>
+                    <th>Status</th>
+                    <th>Total Price</th>
+                    <th>Discount Availed?</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="booking : ${user.bookings}">
+                    <td th:text="${booking.bookingId}"></td>
+                    <td>
+                        <a th:href="@{/flights/{flightId}(flightId=${booking.flightId})}" th:text="'Flight Details'">Flight Details</a>
+                    </td>
+                    
+                    <td th:text="${booking.bookingDate}"></td>
+                    <td th:text="${booking.status}"></td>
+                    <td th:text="${booking.totalPrice}"></td>
+                    <td th:text="${booking.discountApplied}"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+>>>>>>> origin/main
+
+</body>
+</html>

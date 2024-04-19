@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Final Booking</title>
+    <link rel="stylesheet" th:href="@{/finalBook.css}">
+</head>
+
+<body>
+
+<div class="container">
+    <h2>Flight Details</h2>
+
+    <div class="flight-details">
+        <h3>Flight Information</h3>
+        <div class="info-item">Flight ID: <span th:text="${flight.flightId}"></span></div>
+        <div class="info-item">Source: <span th:text="${flight.source}"></span></div>
+        <div class="info-item">Destination: <span th:text="${flight.destination}"></span></div>
+        <div class="info-item">Departure Date: <span th:text="${flight.departureDate}"></span></div>
+        <div class="info-item">Return Date: <span th:text="${flight.returnDate}"></span></div>
+        <div class="info-item">Price: <span th:text="${flight.price}"></span></div>
+        <div class="info-item">Available Seats: <span th:text="${flight.availableSeats}"></span></div>
+        <div class="info-item">Flight Type: <span th:text="${flight.flightType}"></span></div>
+    </div>
+
+    <form action="/confirmBooking" method="post">
+        <input type="hidden" name="userId" id="userId" th:value="${userId}">
+        <input type="hidden" name="flightId" th:value="${flight.flightId}">
+        <input type="submit" value="Book">
+    </form>
+</div>
+<script>
+    // Retrieve the user_id from localStorage
+    const userId = localStorage.getItem('userId');
+    console.log(userId);
+
+    // Set the value of the input field
+    document.getElementById('userId').value = userId;
+</script>
+</body>
+</html>

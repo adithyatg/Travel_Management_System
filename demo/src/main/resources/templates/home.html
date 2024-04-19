@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" th:href="@{/home.css}">
+</head>
+
+<body>
+
+    <script>
+        console.log(localStorage.getItem('userId'));
+        if (!localStorage.getItem('userId')) {
+            // Retrieve the user_id from the model
+            const userId = '[[${userId}]]';
+            
+            // Set the value of the user_id in local storage
+            localStorage.setItem('userId', userId);
+            console.log(localStorage.getItem("userId"));
+        }
+    </script>
+    
+
+<!-- Navigation Bar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">Flight Booking</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="#">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/bookFlight">Book a Flight</a>
+            </li>
+            <li class="nav-item">
+                <form action="/profile" method="post">
+                    <input type="hidden" name="userId" id="userId" th:value="${userId}">
+                    <button class="nav-link" style="background-color: #343a40;border: none">Profile</button>
+                </form>
+            </li>            
+            <li class="nav-item">
+                <a class="nav-link" href="/logout">Logout</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<div style="width: 100%;text-align: center;">
+    <h1 >Welcome to Flight Booking</h1><br></br>
+    <!-- <a href="/bookFlight" class="btn btn-primary">Book Now</a> -->
+</div>
+
+
+
+<!-- jQuery and Bootstrap JS -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>

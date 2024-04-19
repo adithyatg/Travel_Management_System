@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Book Flight</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" th:href="@{/booking.css}">
+</head>
+<body>
+
+<div class="container mt-5">
+    <h2 class="mb-4">Book a Flight</h2>
+
+    <form action="#" th:action="@{/bookFlight}" th:object="${flight}" method="post">
+
+        <div class="form-group">
+            <label for="source">Source:</label>
+            <input class="form-control" type="text" id="source" name="source" required>
+        </div>
+
+        <div class="form-group">
+            <label for="destination">Destination:</label>
+            <input class="form-control" type="text" id="destination" name="destination" required>
+        </div>
+
+        <div class="form-group">
+            <label for="flightType">Flight Type:</label>
+            <select class="form-control" id="flightType" name="flightType" onchange="toggleReturnDate()">
+                <option value="OneWay">One Way</option>
+                <option value="TwoWay">Two Way</option>
+            </select>
+        </div>
+
+        <div class="form-group" id="departure">
+            <label for="departureDate">Departure Date:</label>
+            <input class="form-control" type="date" id="departureDate" name="departureDate" required>
+        </div>
+
+        <div class="form-group" id="return" style="display: none;">
+            <label for="returnDate">Return Date:</label>
+            <input class="form-control" type="date" id="returnDate" name="returnDate">
+        </div>
+
+        <div class="form-group">
+            <button class="btn btn-primary" type="submit">Search Flights</button>
+        </div>
+
+    </form>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<script>
+    function toggleReturnDate() {
+        const flightType = document.getElementById('flightType').value;
+        const returnDateDiv = document.getElementById('return');
+
+        if (flightType === 'TwoWay') {
+            returnDateDiv.style.display = 'block';
+        } else {
+            returnDateDiv.style.display = 'none';
+        }
+    }
+</script>
+
+</body>
+</html>
